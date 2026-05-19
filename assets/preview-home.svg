@@ -1,0 +1,22 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" fill="#f7f6ef"/>
+  <rect x="0" y="0" width="1200" height="34" fill="#1f5b37"/>
+  <rect x="70" y="95" width="520" height="430" rx="28" fill="#ffffff" stroke="#d7e3d1" stroke-width="3"/>
+  <rect x="640" y="95" width="490" height="430" rx="28" fill="#ffffff" stroke="#d7e3d1" stroke-width="3"/>
+  <text x="72" y="62" font-family="Arial" font-size="20" font-weight="700" fill="#5ea94c">WheatStone Bridge</text>
+  <text x="110" y="150" font-family="Arial" font-size="24" font-weight="700" fill="#5ea94c">Smart Wheat Care</text>
+  <text x="110" y="210" font-family="Arial" font-size="48" font-weight="700" fill="#214231">AI-driven wheat</text>
+  <text x="110" y="265" font-family="Arial" font-size="48" font-weight="700" fill="#214231">disease diagnosis</text>
+  <text x="110" y="325" font-family="Arial" font-size="22" fill="#5c7061">Upload a wheat leaf image and get diagnosis output</text>
+  <text x="110" y="356" font-family="Arial" font-size="22" fill="#5c7061">with confidence, guidance, and history tracking.</text>
+  <rect x="110" y="405" width="220" height="46" rx="23" fill="#5ea94c"/>
+  <text x="154" y="435" font-family="Arial" font-size="22" font-weight="700" fill="#ffffff">Get Diagnosis</text>
+  <rect x="710" y="145" width="350" height="120" rx="24" fill="#f7f9f3" stroke="#d7e3d1" stroke-width="2"/>
+  <text x="742" y="190" font-family="Arial" font-size="20" fill="#5c7061">Prediction mode</text>
+  <text x="742" y="230" font-family="Arial" font-size="30" font-weight="700" fill="#214231">AI image classifier</text>
+  <rect x="710" y="290" width="350" height="150" rx="24" fill="#ffffff" stroke="#d7e3d1" stroke-width="2"/>
+  <text x="742" y="334" font-family="Arial" font-size="20" fill="#5c7061">Covered diseases</text>
+  <text x="742" y="376" font-family="Arial" font-size="26" font-weight="700" fill="#214231">Healthy | Rust | Blight</text>
+  <text x="742" y="410" font-family="Arial" font-size="26" font-weight="700" fill="#214231">Powdery Mildew</text>
+  <text x="85" y="610" font-family="Arial" font-size="18" fill="#5c7061">Conceptual homepage preview used in the GitHub repository</text>
+</svg>
