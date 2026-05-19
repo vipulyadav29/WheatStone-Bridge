@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}WheatStone Bridge | History{% endblock %}
+{% block content %}
+<main>
+  <section class="page-hero">
+    <p class="eyebrow">History</p>
+    <h1>Review recent wheat diagnoses stored by the live platform.</h1>
+    <p class="hero-text">
+      This page shows the saved diagnosis history so your project includes record tracking, not just a single prediction view.
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="info-grid three-col">
+      <article class="info-card">
+        <h3>Total analyses</h3>
+        <p>{{ summary.total_predictions }}</p>
+      </article>
+      <article class="info-card">
+        <h3>Most common class</h3>
+        <p>{{ summary.top_class }}</p>
+      </article>
+      <article class="info-card">
+        <h3>Occurrences</h3>
+        <p>{{ summary.top_class_count }}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section history-section">
+    <div class="history-grid history-grid-wide">
+      {% if prediction_history %}
+        {% for item in prediction_history %}
+          <article class="history-card">
+            <h3>{{ item.predicted_class }}</h3>
+            <p><strong>File:</strong> {{ item.filename }}</p>
+            <p><strong>Confidence:</strong> {{ '%.2f'|format(item.confidence * 100) }}%</p>
+            <p><strong>Source:</strong> {{ item.source }}</p>
+            <p><strong>Saved:</strong> {{ item.created_at }}</p>
+          </article>
+        {% endfor %}
+      {% else %}
+        <article class="history-card history-empty">
+          <h3>No diagnoses yet</h3>
+          <p>Run your first wheat diagnosis from the home page to populate this history.</p>
+        </article>
+      {% endif %}
+    </div>
+  </section>
+</main>
+{% endblock %}

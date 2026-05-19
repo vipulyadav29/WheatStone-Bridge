@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block title %}WheatStone Bridge | Submission{% endblock %}
+{% block content %}
+<main>
+  <section class="page-hero">
+    <p class="eyebrow">Submission Summary</p>
+    <h1>Everything needed to explain Wheatstone Bridge in one page.</h1>
+    <p class="hero-text">
+      This page is structured for project submission, viva explanation, and quick walkthroughs.
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="info-grid two-col">
+      <article class="info-card">
+        <h3>Abstract</h3>
+        <p>
+          Wheatstone Bridge is a wheat-only disease diagnosis platform that allows users to upload
+          wheat leaf images, identify likely disease classes, understand visible symptoms, and review
+          result history through a modern web interface.
+        </p>
+      </article>
+      <article class="info-card">
+        <h3>Problem Statement</h3>
+        <p>
+          Early disease identification in wheat crops is important for crop protection, but manual diagnosis
+          may be delayed or difficult. This platform aims to simplify the first diagnosis step.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Objectives</p>
+      <h2>Core goals of the project</h2>
+    </div>
+    <div class="timeline">
+      <article class="timeline-card">
+        <span>01</span>
+        <div>
+          <h3>Detect diseases from wheat leaf images</h3>
+          <p>Keep the system specific to wheat so the diagnosis scope remains focused and understandable.</p>
+        </div>
+      </article>
+      <article class="timeline-card">
+        <span>02</span>
+        <div>
+          <h3>Classify healthy and diseased conditions</h3>
+          <p>The current platform targets Healthy, Rust, Leaf Blight, and Powdery Mildew.</p>
+        </div>
+      </article>
+      <article class="timeline-card">
+        <span>03</span>
+        <div>
+          <h3>Provide a simple web-based interface</h3>
+          <p>Users can upload images, view results, browse diseases, and access diagnosis history.</p>
+        </div>
+      </article>
+      <article class="timeline-card">
+        <span>04</span>
+        <div>
+          <h3>Support future ML model integration</h3>
+          <p>The running app is ready for a trained model later, while remaining stable in the current environment.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Methodology</p>
+      <h2>Simple working flow</h2>
+    </div>
+    <div class="info-grid four-col">
+      <article class="info-card">
+        <h3>Image upload</h3>
+        <p>The user uploads a wheat leaf image through the web interface.</p>
+      </article>
+      <article class="info-card">
+        <h3>Input handling</h3>
+        <p>The system validates file type and stores the uploaded image safely.</p>
+      </article>
+      <article class="info-card">
+        <h3>Classification</h3>
+        <p>The app returns a likely diagnosis using the current inference layer.</p>
+      </article>
+      <article class="info-card">
+        <h3>Storage and review</h3>
+        <p>Results are saved to the database so the app includes history and tracking.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Tech Stack</p>
+      <h2>Technologies used in the running app</h2>
+    </div>
+    <div class="info-grid three-col">
+      <article class="info-card">
+        <h3>Frontend</h3>
+        <p>HTML, CSS, JavaScript, Jinja templates</p>
+      </article>
+      <article class="info-card">
+        <h3>Backend</h3>
+        <p>Python Flask application with route-based page rendering</p>
+      </article>
+      <article class="info-card">
+        <h3>Data Layer</h3>
+        <p>SQLite storage for diagnosis history and contact messages</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="info-grid two-col">
+      <article class="info-card">
+        <h3>Current live status</h3>
+        <p><strong>Inference mode:</strong> {{ inference_mode }}</p>
+        <p><strong>Total stored analyses:</strong> {{ summary.total_predictions }}</p>
+        <p><strong>Most common class:</strong> {{ summary.top_class }}</p>
+      </article>
+      <article class="info-card">
+        <h3>Future scope</h3>
+        <p>Real TensorFlow model integration, treatment recommendation expansion, richer user accounts, and mobile-first deployment can be added later.</p>
+      </article>
+    </div>
+  </section>
+</main>
+{% endblock %}

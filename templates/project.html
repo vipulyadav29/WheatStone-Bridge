@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block title %}WheatStone Bridge | Project{% endblock %}
+{% block content %}
+<main>
+  <section class="page-hero">
+    <p class="eyebrow">Platform Overview</p>
+    <h1>Wheatstone Bridge turns wheat leaf images into a clear, diagnosis-first experience.</h1>
+    <p class="hero-text">
+      Wheatstone Bridge combines image upload, wheat disease classification, result presentation,
+      and disease awareness content in one wheat-focused platform.
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Why It Matters</p>
+      <h2>Why a wheat diagnosis platform is useful</h2>
+    </div>
+    <div class="info-grid three-col">
+      <article class="info-card">
+        <h3>Late identification</h3>
+        <p>Farmers often notice symptoms after disease spread has already affected crop quality and yield.</p>
+      </article>
+      <article class="info-card">
+        <h3>Manual dependency</h3>
+        <p>Traditional diagnosis may depend on expert availability, which is not always easy to access quickly.</p>
+      </article>
+      <article class="info-card">
+        <h3>Need for clarity</h3>
+        <p>A good diagnosis platform should explain the process simply, not just show a model output without context.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Core Features</p>
+      <h2>What Wheatstone Bridge is designed to deliver</h2>
+    </div>
+    <div class="timeline">
+      <article class="timeline-card">
+        <span>01</span>
+        <div>
+          <h3>Detect wheat diseases from leaf images</h3>
+          <p>Focus only on wheat to keep the platform specific and useful for one crop problem space.</p>
+        </div>
+      </article>
+      <article class="timeline-card">
+        <span>02</span>
+        <div>
+          <h3>Classify four important outcomes</h3>
+          <p>Healthy, Rust, Leaf Blight, and Powdery Mildew are the current classes in the system.</p>
+        </div>
+      </article>
+      <article class="timeline-card">
+        <span>03</span>
+        <div>
+          <h3>Provide a user-friendly website</h3>
+          <p>The interface is designed so users can move from image upload to disease understanding without confusion.</p>
+        </div>
+      </article>
+      <article class="timeline-card">
+        <span>04</span>
+        <div>
+          <h3>Support real-model integration</h3>
+          <p>The frontend and backend structure are ready for connecting a trained model later.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Product Direction</p>
+      <h2>A cleaner website direction inspired by modern crop diagnosis products</h2>
+    </div>
+    <div class="info-grid two-col">
+      <article class="info-card">
+        <h3>Diagnosis-first design</h3>
+        <p>Important actions such as crop diagnosis, disease browsing, and contact stay visible and simple.</p>
+      </article>
+      <article class="info-card">
+        <h3>Knowledge-rich experience</h3>
+        <p>The platform combines prediction flow with disease awareness, making the result more meaningful.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Project Snapshot</p>
+      <h2>Current live platform stats</h2>
+    </div>
+    <div class="info-grid three-col">
+      <article class="info-card">
+        <h3>Total analyses</h3>
+        <p>{{ summary.total_predictions }}</p>
+      </article>
+      <article class="info-card">
+        <h3>Most common class</h3>
+        <p>{{ summary.top_class }}</p>
+      </article>
+      <article class="info-card">
+        <h3>Top class count</h3>
+        <p>{{ summary.top_class_count }}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <p class="eyebrow">Model Status</p>
+      <h2>Current inference setup in the running environment</h2>
+    </div>
+    <div class="info-grid two-col">
+      <article class="info-card">
+        <h3>Inference mode</h3>
+        <p>{{ inference_mode }}</p>
+        <p>This environment currently serves a lightweight analyzer so the live product flow stays stable.</p>
+      </article>
+      <article class="info-card">
+        <h3>Upgrade path</h3>
+        <p>Add a trained TensorFlow model file at `model/{{ model_path }}` in a supported Python environment to enable real inference later.</p>
+      </article>
+    </div>
+  </section>
+</main>
+{% endblock %}

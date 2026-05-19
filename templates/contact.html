@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}WheatStone Bridge | Contact{% endblock %}
+{% block content %}
+<main>
+  <section class="page-hero">
+    <p class="eyebrow">Contact</p>
+    <h1>Share demo requests, product questions, or wheat diagnosis inquiries.</h1>
+    <p class="hero-text">
+      This page keeps the platform focused on product information, communication, and diagnosis-related inquiries.
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="contact-layout">
+      <article class="info-card">
+        <h3>Platform Contact</h3>
+        <p><strong>Email:</strong> {{ contact_email }}</p>
+        <p><strong>Platform:</strong> Wheatstone Bridge</p>
+        <p><strong>Focus:</strong> Wheat disease diagnosis using leaf image analysis</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="mailto:{{ contact_email }}?subject=WheatStone%20Bridge%20Inquiry">Email Directly</a>
+        </div>
+      </article>
+
+      <form class="contact-card" method="POST">
+        <h3>Send a message</h3>
+        {% if submitted %}
+          <div class="flash-message flash-success">Your message has been saved successfully.</div>
+        {% endif %}
+        <label>
+          <span>Name</span>
+          <input type="text" name="name" placeholder="Your name" required>
+        </label>
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" placeholder="Your email" required>
+        </label>
+        <label>
+          <span>Message</span>
+          <textarea name="message" rows="5" placeholder="Write your message" required></textarea>
+        </label>
+        <button class="button button-primary" type="submit">Submit</button>
+      </form>
+    </div>
+  </section>
+</main>
+{% endblock %}

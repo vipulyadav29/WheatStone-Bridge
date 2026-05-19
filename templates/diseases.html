@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}WheatStone Bridge | Diseases{% endblock %}
+{% block content %}
+<main>
+  <section class="page-hero">
+    <p class="eyebrow">Disease Guide</p>
+    <h1>Understand the main wheat leaf conditions recognized by the platform.</h1>
+    <p class="hero-text">
+      These summaries help users understand what the system is looking for during diagnosis.
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="info-grid two-col">
+      {% for disease in disease_cards %}
+        <article class="detail-card">
+          <span class="disease-tag {{ disease.slug }}">{{ disease.tag }}</span>
+          <h2>{{ disease.title }}</h2>
+          <p>{{ disease.summary }}</p>
+          <ul class="clean-list">
+            {% for point in disease.points %}
+              <li>{{ point }}</li>
+            {% endfor %}
+          </ul>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+</main>
+{% endblock %}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Wheatstone Bridge{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{{ url_for('index') }}">
+      <img
+        class="brand-logo"
+        src="{{ url_for('static', filename='images/wheatstone-logo.png') }}"
+        alt="WheatStone logo"
+      >
+      <span class="brand-copy">
+        <strong>WheatStone Bridge</strong>
+        <span>AI driven healthier wheat crops</span>
+      </span>
+    </a>
+    <nav class="site-nav">
+      <a class="{% if request.endpoint == 'index' %}nav-active{% endif %}" href="{{ url_for('index') }}">Home</a>
+      <a class="{% if request.endpoint == 'diseases' %}nav-active{% endif %}" href="{{ url_for('diseases') }}">Diseases</a>
+      <a class="{% if request.endpoint == 'project' %}nav-active{% endif %}" href="{{ url_for('project') }}">Project</a>
+      <a class="{% if request.endpoint == 'submission' %}nav-active{% endif %}" href="{{ url_for('submission') }}">Submission</a>
+      <a class="{% if request.endpoint == 'history' %}nav-active{% endif %}" href="{{ url_for('history') }}">History</a>
+      <a class="{% if request.endpoint == 'contact' %}nav-active{% endif %}" href="{{ url_for('contact') }}">Contact</a>
+    </nav>
+    <a class="button button-primary header-cta" href="{{ url_for('index') }}#detector">Open Diagnosis</a>
+  </header>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <section class="section flash-wrap">
+        <div class="flash-stack">
+          {% for message in messages %}
+            <div class="flash-message">{{ message }}</div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+  {% endwith %}
+
+  {% block content %}{% endblock %}
+
+  <footer class="site-footer">
+    <div class="footer-shell">
+      <div>
+        <strong>WheatStone Bridge</strong>
+        <p>AI-driven wheat diagnosis platform for healthier crops.</p>
+        <p>{{ contact_email }}</p>
+      </div>
+      <div class="footer-links">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('diseases') }}">Diseases</a>
+        <a href="{{ url_for('project') }}">Project</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
