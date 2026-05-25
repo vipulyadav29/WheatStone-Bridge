@@ -125,8 +125,8 @@
         <p>Learn what rust, leaf blight, powdery mildew, and healthy leaf conditions look like.</p>
       </article>
       <article class="info-card">
-        <h3>Explore next-step guidance</h3>
-        <p>Pair disease output with short, practical advice so the result feels useful and complete.</p>
+        <h3>Reject unrelated images</h3>
+        <p>The app now warns users when the uploaded image does not look like a wheat leaf sample.</p>
       </article>
     </div>
   </section>
@@ -168,7 +168,7 @@
     <div class="section-heading">
       <p class="eyebrow">Interactive Demo</p>
       <h2>Upload a wheat leaf image</h2>
-      <p>This live app stores results and runs the diagnosis flow with a cleaner product-style layout.</p>
+      <p>Only wheat leaf images should be uploaded. Unrelated images are now flagged before disease diagnosis.</p>
     </div>
 
     <div class="detector-shell">
@@ -215,7 +215,7 @@
           <div class="result-card">
             <p class="result-label">Diagnosis output</p>
             <h3>Waiting for analysis</h3>
-            <p>The result card will show disease class, confidence, quality feedback, and short guidance after upload.</p>
+            <p>The result card will show disease class, confidence, wheat-image validation, and short guidance after upload.</p>
           </div>
         {% endif %}
       </div>
@@ -235,8 +235,8 @@
       </article>
       <article>
         <span>02</span>
-        <h3>Scan symptoms</h3>
-        <p>The system reviews leaf appearance patterns to prepare for classification.</p>
+        <h3>Validate input</h3>
+        <p>The app checks whether the uploaded image looks like a wheat leaf before classification.</p>
       </article>
       <article>
         <span>03</span>
@@ -246,7 +246,7 @@
       <article>
         <span>04</span>
         <h3>Store result</h3>
-        <p>The app stores each diagnosis so the project includes usable result history.</p>
+        <p>Valid wheat diagnoses are stored so the app keeps a useful result history.</p>
       </article>
     </div>
   </section>

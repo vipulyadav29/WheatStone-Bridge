@@ -77,13 +77,14 @@ def index():
         file.save(upload_path)
 
         prediction = classify_image(upload_path, MODEL_CONTEXT)
-        save_prediction(
-            DB_PATH,
-            filename=filename,
-            predicted_class=prediction["label"],
-            confidence=prediction["confidence"],
-            source=prediction["source"],
-        )
+        if prediction.get("is_wheat_candidate", True):
+            save_prediction(
+                DB_PATH,
+                filename=filename,
+                predicted_class=prediction["label"],
+                confidence=prediction["confidence"],
+                source=prediction["source"],
+            )
 
         result = {
             **prediction,

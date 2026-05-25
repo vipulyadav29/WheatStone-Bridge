@@ -22,6 +22,9 @@ LOW_CONFIDENCE_THRESHOLD = 0.60
 BLUR_THRESHOLD = 18.0
 BRIGHTNESS_MIN = 40.0
 BRIGHTNESS_MAX = 220.0
+MIN_GREEN_RATIO = 0.08
+MIN_LEAF_COVERAGE = 0.10
+MIN_ASPECT_RATIO = 1.15
 
 
 def ensure_upload_directory(path: Path) -> None:
@@ -59,6 +62,19 @@ def load_prediction_model(model_path: Path) -> dict:
 
 def classify_image(image_path: Path, model_context: dict) -> dict:
     quality = _assess_image_quality(image_path)
+    wheat_check = _assess_wheat_leaf_candidate(image_path)
+
+    if not wheat_check["is_wheat_candidate"]:
+        return {
+            "label": "Not a wheat leaf",
+            "confidence": wheat_check["confidence"],
+            "source": "input-validator",
+            "advice": "Please upload a clear image of a wheat leaf only. The current image does not look like a valid wheat leaf sample.",
+            "quality": quality,
+            "warning": wheat_check["reason"],
+            "is_uncertain": True,
+            "is_wheat_candidate": False,
+        }
 
     if model_context["ready"]:
         prediction = _predict_with_model(image_path, model_context["model"])
@@ -68,6 +84,7 @@ def classify_image(image_path: Path, model_context: dict) -> dict:
     prediction["quality"] = quality
     prediction["warning"] = _build_prediction_warning(prediction["confidence"], quality)
     prediction["is_uncertain"] = prediction["warning"] is not None
+    prediction["is_wheat_candidate"] = True
     return prediction
 
 
@@ -212,6 +229,58 @@ def _assess_image_quality(image_path: Path) -> dict:
         "too_dark": brightness < BRIGHTNESS_MIN,
         "too_bright": brightness > BRIGHTNESS_MAX,
         "too_blurry": blur_score < BLUR_THRESHOLD,
+    }
+
+
+def _assess_wheat_leaf_candidate(image_path: Path) -> dict:
+    image = Image.open(image_path).convert("RGB")
+    width, height = image.size
+    resized = image.resize((96, 96))
+
+    green_pixels = 0
+    leaf_pixels = 0
+    total_pixels = 96 * 96
+
+    for red, green, blue in resized.getdata():
+        max_channel = max(red, green, blue)
+        min_channel = min(red, green, blue)
+        if green > red * 0.9 and green >= blue * 0.85 and green > 45:
+            green_pixels += 1
+
+        if (green > red * 0.8 and green > 40) or (red > 90 and green > 90 and blue < red * 0.95):
+            if max_channel - min_channel > 18:
+                leaf_pixels += 1
+
+    green_ratio = green_pixels / total_pixels
+    leaf_coverage = leaf_pixels / total_pixels
+    aspect_ratio = max(width, height) / max(1, min(width, height))
+
+    if leaf_coverage < MIN_LEAF_COVERAGE:
+        return {
+            "is_wheat_candidate": False,
+            "confidence": max(0.05, leaf_coverage),
+            "reason": "This image does not appear to contain enough leaf area. Please upload a close, clear wheat leaf photo.",
+        }
+
+    if green_ratio < MIN_GREEN_RATIO:
+        return {
+            "is_wheat_candidate": False,
+            "confidence": max(0.05, green_ratio),
+            "reason": "This image does not look like a wheat leaf. Please upload a wheat leaf image only.",
+        }
+
+    if aspect_ratio < MIN_ASPECT_RATIO:
+        return {
+            "is_wheat_candidate": False,
+            "confidence": max(0.05, aspect_ratio / MIN_ASPECT_RATIO * 0.5),
+            "reason": "The uploaded image shape does not resemble a wheat leaf. Please use a single wheat leaf photo.",
+        }
+
+    confidence = min(0.99, 0.45 + green_ratio + leaf_coverage / 2.0)
+    return {
+        "is_wheat_candidate": True,
+        "confidence": confidence,
+        "reason": None,
     }
 
 
