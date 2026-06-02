@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Wheatstone Bridge{% endblock %}</title>
+  <title>{% block title %}WheatStone Bridge{% endblock %}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -27,13 +27,13 @@
     </a>
     <nav class="site-nav">
       <a class="{% if request.endpoint == 'index' %}nav-active{% endif %}" href="{{ url_for('index') }}">Home</a>
-      <a class="{% if request.endpoint == 'diseases' %}nav-active{% endif %}" href="{{ url_for('diseases') }}">Diseases</a>
-      <a class="{% if request.endpoint == 'project' %}nav-active{% endif %}" href="{{ url_for('project') }}">Project</a>
-      <a class="{% if request.endpoint == 'submission' %}nav-active{% endif %}" href="{{ url_for('submission') }}">Submission</a>
-      <a class="{% if request.endpoint == 'history' %}nav-active{% endif %}" href="{{ url_for('history') }}">History</a>
+      <a class="{% if request.endpoint == 'diseases' %}nav-active{% endif %}" href="{{ url_for('diseases') }}">Disease Guide</a>
+      <a class="{% if request.endpoint == 'project' %}nav-active{% endif %}" href="{{ url_for('project') }}">How It Works</a>
+      <a class="{% if request.endpoint == 'submission' %}nav-active{% endif %}" href="{{ url_for('submission') }}">Crop Insights</a>
+      <a class="{% if request.endpoint == 'history' %}nav-active{% endif %}" href="{{ url_for('history') }}">Records</a>
       <a class="{% if request.endpoint == 'contact' %}nav-active{% endif %}" href="{{ url_for('contact') }}">Contact</a>
     </nav>
-    <a class="button button-primary header-cta" href="{{ url_for('index') }}#detector">Open Diagnosis</a>
+    <a class="button button-primary header-cta" href="{{ url_for('index') }}#detector">Start Scan</a>
   </header>
 
   {% with messages = get_flashed_messages() %}
@@ -54,13 +54,13 @@
     <div class="footer-shell">
       <div>
         <strong>WheatStone Bridge</strong>
-        <p>AI-driven wheat diagnosis platform for healthier crops.</p>
+        <p>AI-driven wheat diagnosis support for healthier crops.</p>
         <p>{{ contact_email }}</p>
       </div>
       <div class="footer-links">
         <a href="{{ url_for('index') }}">Home</a>
-        <a href="{{ url_for('diseases') }}">Diseases</a>
-        <a href="{{ url_for('project') }}">Project</a>
+        <a href="{{ url_for('diseases') }}">Disease Guide</a>
+        <a href="{{ url_for('project') }}">How It Works</a>
         <a href="{{ url_for('contact') }}">Contact</a>
       </div>
     </div>

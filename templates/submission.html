@@ -1,30 +1,27 @@
 {% extends "base.html" %}
-{% block title %}WheatStone Bridge | Submission{% endblock %}
+{% block title %}WheatStone Bridge | Crop Insights{% endblock %}
 {% block content %}
 <main>
   <section class="page-hero">
-    <p class="eyebrow">Submission Summary</p>
-    <h1>Everything needed to explain Wheatstone Bridge in one page.</h1>
+    <p class="eyebrow">Crop Insights</p>
+    <h1>Practical wheat health guidance for faster field decisions.</h1>
     <p class="hero-text">
-      This page is structured for project submission, viva explanation, and quick walkthroughs.
+      Learn what to watch for, how the scan flow supports early action, and how WheatStone Bridge keeps wheat diagnosis simple.
     </p>
   </section>
 
   <section class="section">
     <div class="info-grid two-col">
       <article class="info-card">
-        <h3>Abstract</h3>
+        <h3>Early detection matters</h3>
         <p>
-          Wheatstone Bridge is a wheat-only disease diagnosis platform that allows users to upload
-          wheat leaf images, identify likely disease classes, understand visible symptoms, and review
-          result history through a modern web interface.
+          Wheat diseases can spread quickly when symptoms are missed. A clear leaf scan helps users notice warning signs earlier and decide what needs attention.
         </p>
       </article>
       <article class="info-card">
-        <h3>Problem Statement</h3>
+        <h3>Built for wheat leaves</h3>
         <p>
-          Early disease identification in wheat crops is important for crop protection, but manual diagnosis
-          may be delayed or difficult. This platform aims to simplify the first diagnosis step.
+          The diagnosis flow stays focused on wheat, checks the uploaded image, and presents results in simple language instead of technical reports.
         </p>
       </article>
     </div>
@@ -32,36 +29,36 @@
 
   <section class="section">
     <div class="section-heading">
-      <p class="eyebrow">Objectives</p>
-      <h2>Core goals of the project</h2>
+      <p class="eyebrow">What You Can Check</p>
+      <h2>Common wheat leaf conditions covered by WheatStone Bridge</h2>
     </div>
     <div class="timeline">
       <article class="timeline-card">
         <span>01</span>
         <div>
-          <h3>Detect diseases from wheat leaf images</h3>
-          <p>Keep the system specific to wheat so the diagnosis scope remains focused and understandable.</p>
+          <h3>Healthy leaf condition</h3>
+          <p>Green, balanced leaves with no strong infection pattern are identified as healthy-looking samples.</p>
         </div>
       </article>
       <article class="timeline-card">
         <span>02</span>
         <div>
-          <h3>Classify healthy and diseased conditions</h3>
-          <p>The current platform targets Healthy, Rust, Leaf Blight, and Powdery Mildew.</p>
+          <h3>Rust symptoms</h3>
+          <p>Orange-brown pustules and rust-like marks are highlighted so users can monitor spread quickly.</p>
         </div>
       </article>
       <article class="timeline-card">
         <span>03</span>
         <div>
-          <h3>Provide a simple web-based interface</h3>
-          <p>Users can upload images, view results, browse diseases, and access diagnosis history.</p>
+          <h3>Leaf blight signs</h3>
+          <p>Dry, damaged, or elongated brown lesions are presented with clear next-step awareness.</p>
         </div>
       </article>
       <article class="timeline-card">
         <span>04</span>
         <div>
-          <h3>Support future ML model integration</h3>
-          <p>The running app is ready for a trained model later, while remaining stable in the current environment.</p>
+          <h3>Powdery mildew indicators</h3>
+          <p>White powder-like surfaces are explained as possible fungal signs that need early field attention.</p>
         </div>
       </article>
     </div>
@@ -69,46 +66,25 @@
 
   <section class="section">
     <div class="section-heading">
-      <p class="eyebrow">Methodology</p>
-      <h2>Simple working flow</h2>
+      <p class="eyebrow">Care Flow</p>
+      <h2>A simple path from photo to crop-health action</h2>
     </div>
     <div class="info-grid four-col">
       <article class="info-card">
-        <h3>Image upload</h3>
-        <p>The user uploads a wheat leaf image through the web interface.</p>
+        <h3>Capture</h3>
+        <p>Take a clear photo of a wheat leaf in natural light.</p>
       </article>
       <article class="info-card">
-        <h3>Input handling</h3>
-        <p>The system validates file type and stores the uploaded image safely.</p>
+        <h3>Scan</h3>
+        <p>Upload the image and let the diagnosis flow read the leaf condition.</p>
       </article>
       <article class="info-card">
-        <h3>Classification</h3>
-        <p>The app returns a likely diagnosis using the current inference layer.</p>
+        <h3>Understand</h3>
+        <p>Review the result, confidence, and symptom guidance in simple language.</p>
       </article>
       <article class="info-card">
-        <h3>Storage and review</h3>
-        <p>Results are saved to the database so the app includes history and tracking.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-heading">
-      <p class="eyebrow">Tech Stack</p>
-      <h2>Technologies used in the running app</h2>
-    </div>
-    <div class="info-grid three-col">
-      <article class="info-card">
-        <h3>Frontend</h3>
-        <p>HTML, CSS, JavaScript, Jinja templates</p>
-      </article>
-      <article class="info-card">
-        <h3>Backend</h3>
-        <p>Python Flask application with route-based page rendering</p>
-      </article>
-      <article class="info-card">
-        <h3>Data Layer</h3>
-        <p>SQLite storage for diagnosis history and contact messages</p>
+        <h3>Act early</h3>
+        <p>Use the result as a first screening step and inspect nearby plants when needed.</p>
       </article>
     </div>
   </section>
@@ -116,14 +92,14 @@
   <section class="section">
     <div class="info-grid two-col">
       <article class="info-card">
-        <h3>Current live status</h3>
-        <p><strong>Inference mode:</strong> {{ inference_mode }}</p>
-        <p><strong>Total stored analyses:</strong> {{ summary.total_predictions }}</p>
-        <p><strong>Most common class:</strong> {{ summary.top_class }}</p>
+        <h3>Diagnosis activity</h3>
+        <p><strong>Total scans:</strong> {{ summary.total_predictions }}</p>
+        <p><strong>Most observed result:</strong> {{ summary.top_class }}</p>
+        <p><strong>Recent occurrences:</strong> {{ summary.top_class_count }}</p>
       </article>
       <article class="info-card">
-        <h3>Future scope</h3>
-        <p>Real TensorFlow model integration, treatment recommendation expansion, richer user accounts, and mobile-first deployment can be added later.</p>
+        <h3>Use it as screening support</h3>
+        <p>WheatStone Bridge helps with early awareness. For severe crop infection or high-value field decisions, confirm the condition with an agriculture expert.</p>
       </article>
     </div>
   </section>

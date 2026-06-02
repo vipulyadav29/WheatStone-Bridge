@@ -8,7 +8,7 @@
       <h1>#1 smart platform for wheat disease diagnosis and treatment awareness.</h1>
       <p class="hero-text">
         WheatStone Bridge helps users scan wheat leaf problems, understand symptoms,
-        and move from image upload to clearer crop-health decisions in a softer, product-style experience.
+        and move from image upload to clearer crop-health decisions.
       </p>
       <div class="hero-actions">
         <a class="button button-primary" href="#detector">Get wheat diagnosis</a>
@@ -43,22 +43,22 @@
 
     <div class="hero-panel">
       <div class="hero-card hero-card-main hero-dashboard">
-        <p>Inside the platform</p>
+        <p>Your wheat health dashboard</p>
         <div class="dashboard-stack">
           <article>
             <span>Leaf scan</span>
             <strong>Upload in seconds</strong>
-            <small>Image-based wheat diagnosis with saved history</small>
+            <small>Image-based wheat diagnosis with scan records</small>
           </article>
           <article>
             <span>Prediction mode</span>
             <strong>{{ inference_mode }}</strong>
-            <small>Working live model flow for demos and future upgrades</small>
+            <small>Active wheat diagnosis flow with saved result tracking</small>
           </article>
           <article>
-            <span>Top result class</span>
+            <span>Most observed result</span>
             <strong>{{ summary.top_class }}</strong>
-            <small>{{ summary.top_class_count }} detections stored so far</small>
+            <small>{{ summary.top_class_count }} recent checks recorded</small>
           </article>
         </div>
       </div>
@@ -81,7 +81,7 @@
       </article>
       <article>
         <span>Result tracking</span>
-        <strong>Keep history for project walkthroughs and field demos</strong>
+        <strong>Keep history for field review and crop monitoring</strong>
       </article>
     </div>
   </section>
@@ -89,22 +89,21 @@
   <section class="section">
     <div class="feature-band">
       <div class="feature-copy">
-        <p class="eyebrow">Plant-style Experience</p>
+        <p class="eyebrow">Wheat Care Experience</p>
         <h2>A calmer, clearer diagnosis journey for wheat leaves</h2>
         <p>
-          WheatStone Bridge now feels more like a crop-care product: softer cards, focused actions,
-          clearer disease messaging, and a better visual rhythm across the live app.
+          WheatStone Bridge gives farmers and crop-care users a focused way to scan wheat leaves, read clear disease guidance, and keep track of recent checks.
         </p>
         <div class="hero-actions">
           <a class="button button-primary" href="#detector">Try live diagnosis</a>
-          <a class="button button-secondary" href="{{ url_for('history') }}">View history</a>
+          <a class="button button-secondary" href="{{ url_for('history') }}">View records</a>
         </div>
       </div>
       <div class="feature-visual">
         <div class="floating-card">
           <span>Plant health score</span>
           <strong>Scan. Understand. Respond.</strong>
-          <small>Wheat-only care flow built for project demos and useful diagnosis storytelling.</small>
+          <small>Wheat-only care flow built for clear diagnosis and useful crop-health guidance.</small>
         </div>
       </div>
     </div>
@@ -125,8 +124,8 @@
         <p>Learn what rust, leaf blight, powdery mildew, and healthy leaf conditions look like.</p>
       </article>
       <article class="info-card">
-        <h3>Reject unrelated images</h3>
-        <p>The app now warns users when the uploaded image does not look like a wheat leaf sample.</p>
+        <h3>Wheat-only image check</h3>
+        <p>Unrelated uploads are flagged so diagnosis stays focused on wheat leaf samples.</p>
       </article>
     </div>
   </section>
@@ -140,25 +139,24 @@
             <strong>Healthy crop starts with early detection</strong>
           </div>
           <div class="glass-metric">
-            <label>Current mode</label>
+            <label>Scan type</label>
             <strong>{{ inference_mode }}</strong>
           </div>
           <div class="glass-metric">
-            <label>Stored analyses</label>
+            <label>Saved checks</label>
             <strong>{{ summary.total_predictions }}</strong>
           </div>
         </div>
       </div>
       <div class="feature-copy">
         <p class="eyebrow">Helpful, Not Overwhelming</p>
-        <h2>Designed to explain disease results in a simple, product-like way</h2>
+        <h2>Designed to explain disease results in a simple, clear and practical way</h2>
         <p>
-          Instead of dumping technical detail first, the platform leads with diagnosis, disease awareness,
-          and a cleaner next-step flow. That makes the app easier to understand in demos and viva.
+          Instead of showing a label alone, the platform leads with diagnosis, disease awareness, and a clearer next-step flow so users can understand what to check next.
         </p>
         <div class="hero-actions">
           <a class="button button-primary" href="{{ url_for('diseases') }}">Open disease guide</a>
-          <a class="button button-secondary" href="{{ url_for('submission') }}">See submission page</a>
+          <a class="button button-secondary" href="{{ url_for('submission') }}">View crop insights</a>
         </div>
       </div>
     </div>
@@ -166,9 +164,9 @@
 
   <section class="section detector-section" id="detector">
     <div class="section-heading">
-      <p class="eyebrow">Interactive Demo</p>
+      <p class="eyebrow">Live Diagnosis</p>
       <h2>Upload a wheat leaf image</h2>
-      <p>Only wheat leaf images should be uploaded. Unrelated images are now flagged before disease diagnosis.</p>
+      <p>Upload a clear wheat leaf photo. Non-wheat images are flagged before diagnosis.</p>
     </div>
 
     <div class="detector-shell">
@@ -200,10 +198,10 @@
             {% else %}
               <div class="result-success">
                 <strong>Image quality looks usable.</strong>
-                <span>The model is reasonably confident with this prediction.</span>
+                <span>The scan is confident enough to show a useful first result.</span>
               </div>
             {% endif %}
-            <p class="result-source">Prediction source: {{ result.source }}</p>
+            <p class="result-source"></p>
           </div>
         {% else %}
           <div class="preview-frame preview-empty">
@@ -215,7 +213,7 @@
           <div class="result-card">
             <p class="result-label">Diagnosis output</p>
             <h3>Waiting for analysis</h3>
-            <p>The result card will show disease class, confidence, wheat-image validation, and short guidance after upload.</p>
+            <p>The result card will show disease condition, confidence, wheat-image validation, and short guidance after upload.</p>
           </div>
         {% endif %}
       </div>
@@ -236,47 +234,45 @@
       <article>
         <span>02</span>
         <h3>Validate input</h3>
-        <p>The app checks whether the uploaded image looks like a wheat leaf before classification.</p>
+        <p>The image is checked to confirm it looks like a wheat leaf before diagnosis.</p>
       </article>
       <article>
         <span>03</span>
         <h3>Predict condition</h3>
-        <p>The classifier estimates the most likely wheat health condition from the uploaded image.</p>
+        <p>The diagnosis flow estimates the most likely wheat health condition from the uploaded image.</p>
       </article>
       <article>
         <span>04</span>
         <h3>Store result</h3>
-        <p>Valid wheat diagnoses are stored so the app keeps a useful result history.</p>
+        <p>Valid wheat diagnoses are saved so previous checks stay easy to review.</p>
       </article>
     </div>
   </section>
 
   <section class="section history-section" id="history">
     <div class="section-heading">
-      <p class="eyebrow">Recent Activity</p>
-      <h2>Recent stored diagnoses</h2>
+      <p class="eyebrow">Recent Checks</p>
+      <h2>Recent wheat diagnoses</h2>
     </div>
     <div class="history-grid">
       {% if history %}
         {% for item in history %}
           <article class="history-card">
             <h3>{{ item.predicted_class }}</h3>
-            <p><strong>File:</strong> {{ item.filename }}</p>
             <p><strong>Confidence:</strong> {{ '%.2f'|format(item.confidence * 100) }}%</p>
-            <p><strong>Source:</strong> {{ item.source }}</p>
             <p><strong>Saved:</strong> {{ item.created_at }}</p>
           </article>
         {% endfor %}
       {% else %}
         <article class="history-card history-empty">
-          <h3>No predictions yet</h3>
-          <p>Analyze your first wheat leaf image to populate the project history section.</p>
+          <h3>No scans yet</h3>
+          <p>Analyze your first wheat leaf image to populate the diagnosis history section.</p>
         </article>
       {% endif %}
     </div>
     <div class="hero-actions">
-      <a class="button button-primary" href="{{ url_for('history') }}">Open full history</a>
-      <a class="button button-secondary" href="{{ url_for('submission') }}">View submission summary</a>
+      <a class="button button-primary" href="{{ url_for('history') }}">Open all records</a>
+      <a class="button button-secondary" href="{{ url_for('submission') }}">View crop insights</a>
     </div>
   </section>
 </main>

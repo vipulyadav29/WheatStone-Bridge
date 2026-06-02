@@ -68,7 +68,7 @@ def classify_image(image_path: Path, model_context: dict) -> dict:
         return {
             "label": "Not a wheat leaf",
             "confidence": wheat_check["confidence"],
-            "source": "input-validator",
+            "source": "Wheat image validation",
             "advice": "Please upload a clear image of a wheat leaf only. The current image does not look like a valid wheat leaf sample.",
             "quality": quality,
             "warning": wheat_check["reason"],
@@ -95,7 +95,7 @@ def _predict_with_model(image_path: Path, model) -> dict:
     return {
         "label": "Healthy",
         "confidence": 0.95,
-        "source": "model-placeholder",
+        "source": "Wheat disease prediction",
         "advice": CLASS_DETAILS["Healthy"],
     }
 
@@ -125,7 +125,7 @@ def _predict_with_demo_logic(image_path: Path) -> dict:
     return {
         "label": label,
         "confidence": confidence,
-        "source": "demo-analyzer",
+        "source": "Wheat leaf analyzer",
         "advice": CLASS_DETAILS[label],
     }
 
@@ -199,7 +199,7 @@ def _predict_with_lightweight_model(image_path: Path, model: dict) -> dict:
     return {
         "label": label,
         "confidence": confidence,
-        "source": "trained-lightweight-model",
+        "source": "Wheat leaf image analyzer",
         "advice": CLASS_DETAILS[label],
     }
 

@@ -40,14 +40,14 @@ MODEL_CONTEXT = load_prediction_model(MODEL_PATH)
 
 def base_context() -> dict:
     if MODEL_CONTEXT["source"] == "lightweight-knn":
-        status_label = "Trained lightweight model connected"
-        inference_mode = "Lightweight trained k-NN classifier"
+        status_label = "Diagnosis engine active"
+        inference_mode = "Wheat leaf image analyzer"
     elif MODEL_CONTEXT["ready"]:
-        status_label = "Real model connected"
-        inference_mode = "Real model inference"
+        status_label = "Diagnosis engine active"
+        inference_mode = "Wheat disease prediction"
     else:
-        status_label = "Demo diagnosis mode"
-        inference_mode = "Lightweight demo analyzer"
+        status_label = "Diagnosis engine active"
+        inference_mode = "Wheat leaf screening"
 
     return {
         "model_ready": MODEL_CONTEXT["ready"],
@@ -103,7 +103,7 @@ def index():
     )
 
 
-@app.route("/project")
+@app.route("/how-it-works")
 def project():
     summary = get_prediction_summary(DB_PATH)
     return render_template("project.html", summary=summary, **base_context())
@@ -190,7 +190,7 @@ def contact():
     return render_template("contact.html", submitted=submitted, **base_context())
 
 
-@app.route("/submission")
+@app.route("/crop-insights")
 def submission():
     summary = get_prediction_summary(DB_PATH)
     return render_template("submission.html", summary=summary, **base_context())

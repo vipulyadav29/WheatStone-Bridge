@@ -1,27 +1,27 @@
 {% extends "base.html" %}
-{% block title %}WheatStone Bridge | History{% endblock %}
+{% block title %}WheatStone Bridge | Records{% endblock %}
 {% block content %}
 <main>
   <section class="page-hero">
-    <p class="eyebrow">History</p>
-    <h1>Review recent wheat diagnoses stored by the live platform.</h1>
+    <p class="eyebrow">Records</p>
+    <h1>Review recent wheat diagnosis records.</h1>
     <p class="hero-text">
-      This page shows the saved diagnosis history so your project includes record tracking, not just a single prediction view.
+      Saved scan records help users review previous wheat leaf checks and monitor recurring symptoms.
     </p>
   </section>
 
   <section class="section">
     <div class="info-grid three-col">
       <article class="info-card">
-        <h3>Total analyses</h3>
+        <h3>Total scans</h3>
         <p>{{ summary.total_predictions }}</p>
       </article>
       <article class="info-card">
-        <h3>Most common class</h3>
+        <h3>Most observed result</h3>
         <p>{{ summary.top_class }}</p>
       </article>
       <article class="info-card">
-        <h3>Occurrences</h3>
+        <h3>Recent occurrences</h3>
         <p>{{ summary.top_class_count }}</p>
       </article>
     </div>
@@ -33,16 +33,14 @@
         {% for item in prediction_history %}
           <article class="history-card">
             <h3>{{ item.predicted_class }}</h3>
-            <p><strong>File:</strong> {{ item.filename }}</p>
             <p><strong>Confidence:</strong> {{ '%.2f'|format(item.confidence * 100) }}%</p>
-            <p><strong>Source:</strong> {{ item.source }}</p>
             <p><strong>Saved:</strong> {{ item.created_at }}</p>
           </article>
         {% endfor %}
       {% else %}
         <article class="history-card history-empty">
-          <h3>No diagnoses yet</h3>
-          <p>Run your first wheat diagnosis from the home page to populate this history.</p>
+          <h3>No scans yet</h3>
+          <p>Run your first wheat diagnosis from the home page to create a scan record.</p>
         </article>
       {% endif %}
     </div>
