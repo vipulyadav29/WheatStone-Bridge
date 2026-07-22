@@ -1,9 +1,11 @@
 import os
 from pathlib import Path
 import tempfile
+from uuid import uuid4
 
 from flask import Flask, flash, redirect, render_template, request, send_from_directory, url_for
 from werkzeug.utils import secure_filename
+from PIL import Image
 
 from database import (
     get_all_predictions,
@@ -23,7 +25,7 @@ from utils import (
 
 
 BASE_DIR = Path(__file__).resolve().parent
-UPLOAD_DIR = BASE_DIR / "uploads"
+UPLOAD_DIR = Path(tempfile.gettempdir()) / "wheatstone_bridge_uploads"
 DATA_DIR = Path(tempfile.gettempdir()) / "wheatstone_bridge"
 DB_PATH = DATA_DIR / "predictions.db"
 CONTACT_EMAIL = "capricorn2931@gmail.com"
@@ -38,6 +40,18 @@ init_db(DB_PATH)
 ensure_upload_directory(UPLOAD_DIR)
 MODEL_CONTEXT = load_prediction_model(MODEL_PATH)
 
+
+
+def prepare_uploaded_image(file, upload_dir: Path) -> tuple[Path, str]:
+    original_name = secure_filename(file.filename or "wheat-leaf.jpg")
+    stem = Path(original_name).stem or "wheat-leaf"
+    filename = f"{stem}-{uuid4().hex[:10]}.jpg"
+    upload_path = upload_dir / filename
+
+    image = Image.open(file.stream).convert("RGB")
+    image.thumbnail((1200, 1200))
+    image.save(upload_path, format="JPEG", quality=82, optimize=True)
+    return upload_path, filename
 
 def base_context() -> dict:
     if MODEL_CONTEXT["source"] == "lightweight-knn":
@@ -73,9 +87,11 @@ def index():
             flash("Please upload a valid image file: PNG, JPG, or JPEG.")
             return redirect(url_for("index"))
 
-        filename = secure_filename(file.filename)
-        upload_path = UPLOAD_DIR / filename
-        file.save(upload_path)
+        try:
+            upload_path, filename = prepare_uploaded_image(file, UPLOAD_DIR)
+        except Exception:
+            flash("Please upload a clear valid wheat leaf image.")
+            return redirect(url_for("index"))
 
         prediction = classify_image(upload_path, MODEL_CONTEXT)
         if prediction.get("is_wheat_candidate", True):

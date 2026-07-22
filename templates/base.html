@@ -10,6 +10,7 @@
     href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
+  <link rel="preload" as="image" href="{{ url_for('static', filename='images/wheatstone-logo.png') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
@@ -19,6 +20,10 @@
         class="brand-logo"
         src="{{ url_for('static', filename='images/wheatstone-logo.png') }}"
         alt="WheatStone logo"
+        width="78"
+        height="78"
+        decoding="sync"
+        fetchpriority="high"
       >
       <span class="brand-copy">
         <strong>WheatStone Bridge</strong>
